@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../_common_files/main.css" />
+  <link rel="stylesheet" href="../_common_files/main__styles.css" />
+  <link rel="stylesheet" href="styles/singleChoice_3.css" />
+
+  <title>Единичный выбор</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="singleChoice_3_interface">
+      <fieldset class="form element">
+        <legend>введи параметры элемента</legend>
+        <form>
+          <input type="text" placeholder="Имя" class="name">
+          <input type="text" placeholder="путь к картинке" class="imgSrc">
+          <input type="text" placeholder="подпись/текст" class="text">
+          <input type="text" placeholder="путь к звуку" class="audioSrc">
+          <input type="text" placeholder="ответ" class="answerTag">
+          <input type="submit" class="submit"></input>
+        </form>
+      </fieldset>
+      <h3>Количество элементов: <span class="counterElements">0</span></h3>
+
+      <fieldset class="form treiner">
+        <legend>введи параметры тренажера</legend>
+        <form>
+          <input type="text" placeholder="правильный ответ" class="rightAnswer">
+          <select class="select">
+            <option value="h">horisontal</option>
+            <option value="v">vertical</option>
+          </select>
+          <input type="submit"></input>
+        </form>
+      </fieldset>
+      <div class="">
+        <textarea class="textarea">
+          
+        </textarea>
+      </div>
+    </div>
+    
+
+
+    <!--<div class="trainerTaskWrapper" id="singleChoice_3_task-3">
+      <!-- в поле id указывается уникальный id для данного задания 
+      <div class="singleChoice_3_Wrapper">
+        <div class="singleChoice_3_List"></div>
+      </div>
+    </div>-->
+
+
+
+    <!--  -->
+  </div>
+
+  <!-- JS Scripts -->
+
+  <!-- Занятия -->
+
+  <script src="js-data/singleChice_interface.js" type="module"></script>
+  <!-- <script src="js-data/singleChoice_3.js" type="module"></script>-->
+</body>
+
+</html>
