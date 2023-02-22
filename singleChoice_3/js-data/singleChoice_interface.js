@@ -16,8 +16,9 @@ const textarea = task.querySelector('.textarea')
 
 let arrayOfElements = []
 let rightAnswer = ''
-let orientation ='h'
+let orientation = 'h'
 let count = 0
+let formData1 = new FormData()
 
 elementForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -25,11 +26,23 @@ elementForm.addEventListener('submit', (e) => {
     let obj = {}
     obj.id = count
     obj.name = name.value
-    obj.imgSrc = imgSrc.value
+    obj.imgSrc = imgSrc.files[0]
     obj.text = text.value
-    obj.audioSrc = audioSrc.value
+    obj.audioSrc = audioSrc.files[0]
     obj.answerTag = answerTag.value
     counterElements.innerText = count
+
+    let formData2 = new FormData()
+
+    formData2.append('id', count)
+    formData2.append('name', name.value)
+    formData2.append('imgSrc', imgSrc.files[0], 'chris.jpg')
+    formData2.append('audioSrc', audioSrc.files[0])
+
+    for (var pair of formData2.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    
 
     name.value = ''
     imgSrc.value = ''
@@ -37,12 +50,20 @@ elementForm.addEventListener('submit', (e) => {
     audioSrc.value = ''
     answerTag.value = ''
 
+    /*for (var pair of formData1.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }*/
     arrayOfElements.push(obj)
     console.log(arrayOfElements)
+
 })
+
 
 treinerForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+   
+
     rightAnswer = rightAnswerValue.value
     orientation = orientationValue.value
     //console.log(orientationValue)
@@ -54,4 +75,27 @@ treinerForm.addEventListener('submit', (e) => {
     const orientation ='${orientation}'
     `
 
+    formData1.append('arrayOfElements', arrayOfElements)
+    formData1.append('taskId', "singleChoice_3_task-3")
+    formData1.append('rightAnswer', rightAnswer)
+    formData1.append('orientation', orientation)
+    formData1.append("function"  ,  "renderSingleChoice")
+    formData1.append("simuliatorName"  ,  "singleChoice_3")
+
+    for (var pair of formData1.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    console.log(JSON.stringify(formData1.get('arrayOfElements')))
+    console.log(arrayOfElements)
+    fetch('https://backendforsimuliators-production.up.railway.app/singlechoice_3', {
+        method: 'POST',
+        body: formData1,
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 })

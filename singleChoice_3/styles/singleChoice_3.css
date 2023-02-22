@@ -135,7 +135,7 @@
   width: 300px;
 }
 .form input{
- 
+ min-width: 70%;
   height: 25px;
   margin:10px;
 }
