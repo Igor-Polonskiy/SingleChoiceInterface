@@ -26,22 +26,24 @@ elementForm.addEventListener('submit', (e) => {
     let obj = {}
     obj.id = count
     obj.name = name.value
-    obj.imgSrc = imgSrc.files[0]
+    obj.imgSrc = ''
     obj.text = text.value
-    obj.audioSrc = audioSrc.files[0]
+    obj.audioSrc = ''
     obj.answerTag = answerTag.value
     counterElements.innerText = count
 
-    let formData2 = new FormData()
+    //let formData2 = new FormData()
+    //let arr = [{name:"name",value:"value"},{name:"name",value:"value"}]
 
-    formData2.append('id', count)
-    formData2.append('name', name.value)
-    formData2.append('imgSrc', imgSrc.files[0], 'chris.jpg')
-    formData2.append('audioSrc', audioSrc.files[0])
+    //formData2.append('id', count)
+   // formData2.append('name', name.value)
+    formData1.append(`imgSrc${count}`, imgSrc.files[0])
+    //formData2.append('arr', JSON.stringify(arr))
+    //formData2.append('audioSrc', audioSrc.files[0])
 
-    for (var pair of formData2.entries()) {
+   /* for (var pair of formData2.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
-    }
+    }*/
     
 
     name.value = ''
@@ -56,7 +58,19 @@ elementForm.addEventListener('submit', (e) => {
     arrayOfElements.push(obj)
     console.log(arrayOfElements)
 
+   /* fetch('https://webhook.site/544f3b75-4fda-431a-ae29-d022472cada3', {
+        method: 'POST',
+        body: formData2,
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });*/
 })
+
 
 
 treinerForm.addEventListener('submit', (e) => {
@@ -75,7 +89,7 @@ treinerForm.addEventListener('submit', (e) => {
     const orientation ='${orientation}'
     `
 
-    formData1.append('arrayOfElements', arrayOfElements)
+    formData1.append('arrayOfElements', JSON.stringify(arrayOfElements))
     formData1.append('taskId', "singleChoice_3_task-3")
     formData1.append('rightAnswer', rightAnswer)
     formData1.append('orientation', orientation)
@@ -88,6 +102,7 @@ treinerForm.addEventListener('submit', (e) => {
     console.log(JSON.stringify(formData1.get('arrayOfElements')))
     console.log(arrayOfElements)
     fetch('https://backendforsimuliators-production.up.railway.app/singlechoice_3', {
+    //fetch('https://webhook.site/544f3b75-4fda-431a-ae29-d022472cada3', {
         method: 'POST',
         body: formData1,
     })
