@@ -15,81 +15,64 @@ import {
   renderCheckPanel,
   getCheckPanelElements,
 } from "../../../_common_files/common_scripts.js";
+ //import {id} from './singleChoice_interface.js';
+ const showGlobalId = document.querySelector('.showGlobalId')
+ showGlobalId.addEventListener('click',()=>{
+  console.log(`https://backendforsimuliators-production.up.railway.app/singlechoice_3/${globalid}`);
+  fetch(`https://backendforsimuliators-production.up.railway.app/singlechoice_3/${globalid}`, {
+  //fetch('https://webhook.site/544f3b75-4fda-431a-ae29-d022472cada3', {
+    
+  })
+      .then((response) => response.json())
+      .then((result) => {
+          console.log('Success:', result.template);
+          //elements = result
+          
+            // это уникальный id для данного задания, который был присвоен в html
+            const taskId = "singleChoice_3_task-3";
+            // массив входящих картинок (максимум 5-6 элементов),
+            // поле text, audioSrc  заполняется по необходимости, если надписи или звука нет, то ставится ''
+            // в поле answerTag указывается уникальное слово или цифра, по которой будет сверяться правильный ответ
+            // в поле id указывается уникальная цифра, по которым воспроизводятся звуки
+            // imgSrc -  обязательное поле, путь к картинке
+          
+           
+          
+            const arrayOfElements =result.template.arrayOfElements
+            arrayOfElements.forEach((item,index)=>{
+              item.imgSrc = `https://backendforsimuliators-production.up.railway.app${result.template.arrayOfElements[index].imgSrc}`
+            })
+          
+            // здесь указывается правильный ответ, он проверяется по полю answerTag  в массиве
+            const rightAnswer = result.template.rightAnswer;
+            // заполняется для правильного отображения сетки
+            // 'h' -  ставится, если поля расположены в несколько столбцов
+            // 'v' - если поля должны быть расположены строго в столбик друг под другом (максимум 5 элементов)
+            // const orientation = "v";
+            const orientation = result.template.orientation;
+            // сама функция, которая запускается, здесь ничего менять не нужно
+        
+            renderSingleChoice_3(arrayOfElements, rightAnswer, taskId, orientation);
+          
+          
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+      
+
+// ВЫЗОВ ФУНКЦИИ ДЛЯ СЛУЧАЯ ТОЛЬКО КАРТИНКА И ЗВУК
+ })
+
+let idTask
+
+  idTask = globalid
+  console.log(idTask)
+
 
 // ВЫЗОВ ФУНКЦИИ ДЛЯ СЛУЧАЯ КАРТИНКА + ЗВУК + ТЕКСТ
 
-(() => {
-  // это уникальный id для данного задания, который был присвоен в html
-  const taskId = "singleChoice_3_task-3";
-  // массив входящих картинок (максимум 5-6 элементов),
-  // поле text, audioSrc  заполняется по необходимости, если надписи или звука нет, то ставится ''
-  // в поле answerTag указывается уникальное слово или цифра, по которой будет сверяться правильный ответ
-  // в поле id указывается уникальная цифра, по которым воспроизводятся звуки
-  // imgSrc -  обязательное поле, путь к картинке
 
-  const arrayOfElements = [
-    {
-      id: 1,
-      name: "bear",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_1.jpg",
-      text: "Медведь",
-      audioSrc: "sound/singleChoice_3/bear.mp3",
-      answerTag: "bear",
-    },
-    {
-      id: 2,
-      name: "fox",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_2.jpg",
-      text: "Лиса",
-      audioSrc: "sound/singleChoice_3/fox.mp3",
-      answerTag: "fox",
-    },
-    {
-      id: 3,
-      name: "wolf",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_3.jpg",
-      text: "Волк",
-      audioSrc: "sound/singleChoice_3/wolf.mp3",
-      answerTag: "wolf",
-    },
-    {
-      id: 4,
-      name: "squirrel",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_4.jpg",
-      text: "Белка",
-      audioSrc: "sound/singleChoice_3/squirrel.mp3",
-      answerTag: "squirrel",
-    },
-    {
-      id: 5,
-      name: "monkey",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_5.jpg",
-      text: "Обезьяна",
-      audioSrc: "sound/singleChoice_3/monkey.mp3",
-      answerTag: "monkey",
-    },
-    {
-      id: 6,
-      name: "giraffe",
-      imgSrc: "Images_1/singleChoice_3/DO_3-4_21_5_6.jpg",
-      text: "Жираф",
-      audioSrc: "sound/singleChoice_3/giraffe.mp3",
-      answerTag: "giraffe",
-    },
-  ];
-
-  // здесь указывается правильный ответ, он проверяется по полю answerTag  в массиве
-  const rightAnswer = "bear";
-  // заполняется для правильного отображения сетки
-  // 'h' -  ставится, если поля расположены в несколько столбцов
-  // 'v' - если поля должны быть расположены строго в столбик друг под другом (максимум 5 элементов)
-  // const orientation = "v";
-  const orientation = "h";
-  // сама функция, которая запускается, здесь ничего менять не нужно
-
-  renderSingleChoice_3(arrayOfElements, rightAnswer, taskId, orientation);
-})();
-// ВЫЗОВ ФУНКЦИИ ДЛЯ СЛУЧАЯ ТОЛЬКО КАРТИНКА И ЗВУК
 
 
 

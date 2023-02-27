@@ -14,11 +14,14 @@ const orientationValue = task.querySelector('.select')
 const textarea = task.querySelector('.textarea')
 
 
+
 let arrayOfElements = []
 let rightAnswer = ''
 let orientation = 'h'
 let count = 0
 let formData1 = new FormData()
+window['globalid'] = '';
+
 
 elementForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -109,8 +112,15 @@ treinerForm.addEventListener('submit', (e) => {
         .then((response) => response.json())
         .then((result) => {
             console.log('Success:', result);
+            console.log(result.singleChoice._id)
+            globalid = result.singleChoice._id
+           
         })
         .catch((error) => {
             console.error('Error:', error);
         });
 })
+
+
+
+
