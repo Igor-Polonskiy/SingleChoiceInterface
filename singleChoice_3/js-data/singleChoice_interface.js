@@ -37,7 +37,7 @@ elementForm.addEventListener('submit', (e) => {
 
     //formData2.append('id', count)
    // formData2.append('name', name.value)
-    formData1.append(`imgSrc${count}`, imgSrc.files[0])
+    formData1.append(`imgSrc`, imgSrc.files[0])
     //formData2.append('arr', JSON.stringify(arr))
     //formData2.append('audioSrc', audioSrc.files[0])
 
