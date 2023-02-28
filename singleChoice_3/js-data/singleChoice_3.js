@@ -41,6 +41,7 @@ import {
             const arrayOfElements =result.template.arrayOfElements
             arrayOfElements.forEach((item,index)=>{
               item.imgSrc = `https://backendforsimuliators-production.up.railway.app${result.template.arrayOfElements[index].imgSrc}`
+              item.audioSrc = `https://backendforsimuliators-production.up.railway.app${result.template.arrayOfElements[index].audioSrc}`
             })
           
             // здесь указывается правильный ответ, он проверяется по полю answerTag  в массиве
