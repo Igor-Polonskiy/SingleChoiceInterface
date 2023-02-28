@@ -22,13 +22,13 @@
       <fieldset class="form element">
         <legend>введи параметры элемента</legend>
         <form>
-          <input type="text" placeholder="Имя" class="name">
+          <input type="text" placeholder="Имя" class="name" required>
           <p>выбери картинку: </p>
-          <input type="file" accept="image/*" placeholder="путь к картинке" class="imgSrc">
+          <input type="file" accept="image/*" placeholder="путь к картинке" class="imgSrc" required>
           <input type="text" placeholder="подпись/текст" class="text">
           <p>выбери звук: </p>
-          <input type="file" placeholder="путь к звуку" class="audioSrc">
-          <input type="text" placeholder="ответ" class="answerTag">
+          <input type="file"  accept="audio/*" placeholder="путь к звуку" class="audioSrc">
+          <input type="text" placeholder="ответ" class="answerTag" required>
           <input type="submit" class="submit"></input>
         </form>
       </fieldset>
@@ -37,7 +37,7 @@
       <fieldset class="form treiner">
         <legend>введи параметры тренажера</legend>
         <form>
-          <input type="text" placeholder="правильный ответ" class="rightAnswer">
+          <input type="text" placeholder="правильный ответ" class="rightAnswer" required>
           <select class="select">
             <option value="h">horisontal</option>
             <option value="v">vertical</option>
